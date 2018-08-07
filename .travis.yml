@@ -39,21 +39,10 @@ matrix:
       after_script: R -q -e 'tic::after_script()'
       after_success: R -q -e 'tic::after_success()'
 
-    ### build QGIS LTR on macOS
-    - os: osx
-      osx_image: xcode8.3
-      latex: false
-      sudo: false
-      env: OLD_LTR_mac=true
-      install: R -q -e 'tic::install()'
-      after_install: R -q -e 'tic::after_install()'
-      script: R -q -e 'tic::script()'
     ### build QGIS DEV on macOS
     - os: osx
-      osx_image: xcode8.3
       latex: false
       sudo: false
-      env: LTR_mac=true
       install: R -q -e 'tic::install()'
       after_install: R -q -e 'tic::after_install()'
       script: R -q -e 'tic::script()'
@@ -84,14 +73,14 @@ before_install:
   # OSX
   #############
   
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ccache; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ccache; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
   # make directory writable for osgeo4mac installations
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo chown -R $(whoami) /usr/local; fi
   
   # account for conflicting numpy installations https://github.com/travis-ci/travis-ci/issues/6688
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then /usr/bin/yes | pip2 uninstall numpy; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew unlink python && brew install numpy; fi
+  #- if [ "$TRAVIS_OS_NAME" == "osx" ]; then /usr/bin/yes | pip2 uninstall numpy; fi
+  #- if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew unlink python && brew install numpy; fi
   
   # tap osgeo4mac tap
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew tap osgeo/osgeo4mac; fi
@@ -102,8 +91,9 @@ before_install:
   # install required python packages
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then pip2 install --user psycopg2 matplotlib pyparsing gdal pyyaml jinja2 owslib pygments; fi
   # install qgis
-  - if [[ "${OLD_LTR_mac}" ]]; then brew cask uninstall --force oclint && sudo rm -rf /usr/local/gfortran/bin/gfortran && brew install grass7 && brew unlink grass7 && brew install qgis2-ltr; fi
-  - if [[ "${LTR_mac}" ]]; then brew cask uninstall --force oclint && sudo rm -rf /usr/local/gfortran/bin/gfortran && brew install grass7 && brew unlink grass7 && brew install qgis2; fi
+  #- if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew cask uninstall --force oclint && sudo rm -rf /usr/local/gfortran/bin/gfortran && brew install grass7 && brew install qgis2; fi
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install grass7 && brew install qgis2; fi
+  
   
   - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew link --overwrite --force gdal2; fi
   - R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages(); tic::before_install()'

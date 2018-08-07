@@ -65,7 +65,7 @@ before_install:
   #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ccache; fi
   #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
   # make directory writable for osgeo4mac installations
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo chown -R $(whoami) /usr/local; fi
+  #- if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo chown -R $(whoami) /usr/local; fi
   
   # account for conflicting numpy installations https://github.com/travis-ci/travis-ci/issues/6688
   #- if [ "$TRAVIS_OS_NAME" == "osx" ]; then /usr/bin/yes | pip2 uninstall numpy; fi

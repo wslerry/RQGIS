@@ -7,7 +7,7 @@ addons:
     sources:
       - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
       - sourceline: 'deb http://qgis.org/ubuntugis-ltr trusty main'
-      key_url: 'http://qgis.org/downloads/qgis-2017.gpg.key'
+        key_url: 'http://qgis.org/downloads/qgis-2017.gpg.key'
     packages:
       - libgdal-dev
       - libudunits2-dev

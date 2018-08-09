@@ -19,9 +19,10 @@ cache:
 before_test:
  - ps: >-
       if (-Not (Test-Path "C:\OSGeo4W64\bin")) {
-        cinst --dir c:\OSGeo4W64 qgis-ltr
+        cinst qgis-ltr
       }
  - ps: $env:Path += ";C:\OSGeo4W64\bin"
+ - ps: Get-ChildItem -Path C:\ –Recurse
 
 before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"

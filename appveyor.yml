@@ -14,14 +14,14 @@ install:
 
 cache:
 - C:\RLibrary
-- C:\OSGeo4W64\apps\qgis\bin
+- C:\OSGeo4W64\
 
 before_test:
  - ps: >-
-      if (-Not (Test-Path "C:\OSGeo4W64\apps\qgis\bin")) {
+      if (-Not (Test-Path "C:\OSGeo4W64\bin")) {
         cinst qgis-ltr
       }
- - ps: $env:Path += ";C:\OSGeo4W64\apps\qgis\bin"
+ - ps: $env:Path += ";C:\OSGeo4W64\bin"
 
 before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"

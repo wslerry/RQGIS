@@ -62,26 +62,23 @@ before_install:
   # OSX
   #############
   
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ccache; fi
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
-  # make directory writable for osgeo4mac installations
-  #- if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo chown -R $(whoami) /usr/local; fi
-  
-  # account for conflicting numpy installations https://github.com/travis-ci/travis-ci/issues/6688
-  #- if [ "$TRAVIS_OS_NAME" == "osx" ]; then /usr/bin/yes | pip2 uninstall numpy; fi
-  #- if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew unlink python && brew install numpy; fi
-  
   # tap osgeo4mac tap
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew tap osgeo/osgeo4mac; fi
    
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install saga-gis-lts && brew install proj; fi
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install python@2; fi
+  # install saga-gis-lts
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install saga-gis-lts && brew link saga-gis-lts --force; fi
   
+  # we need python2
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install python@2; fi
   # install required python packages
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then pip2 install --user psycopg2 matplotlib pyparsing gdal pyyaml jinja2 owslib pygments; fi
-  # install qgis
-  #- if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew cask uninstall --force oclint && sudo rm -rf /usr/local/gfortran/bin/gfortran && brew install grass7 && brew install qgis2; fi
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo rm -rf /usr/local/gfortran/bin/gfortran && sudo rm /usr/local/include/c++ && brew install qgis2; fi
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then pip2 install --user psycopg2 future matplotlib pyparsing gdal pyyaml jinja2 owslib pygments; fi
+  
+  # install grass7 and unlink it so that the QGIS linking later on works
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install grass7 && brew unlink grass7; fi
+  # Solve gfortran conflict
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo rm -rf /usr/local/gfortran/bin/gfortran && sudo rm /usr/local/include/c++; fi
+  # install qgis2
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install qgis2; fi
   
   
   - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew link --overwrite --force gdal2; fi

@@ -22,7 +22,9 @@ before_test:
         cinst qgis-ltr
       }
  - ps: $env:Path += ";C:\OSGeo4W64\bin"
- - ps: Get-ChildItem -Path C:\ 
+ - ps: Get-ChildItem -Path C:\Program Files  
+ - ps: Get-ChildItem -Path C:\Program Files (x86)
+ - ps: Get-ChildItem -Path C:\Users\appveyor
 
 before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"

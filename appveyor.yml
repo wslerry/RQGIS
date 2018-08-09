@@ -19,7 +19,7 @@ cache:
 before_test:
  - ps: >-
       if (-Not (Test-Path "C:\OSGeo4W64\bin")) {
-        cinst qgis-ltr
+        cinst --dir c:\OSGeo4W64 qgis-ltr
       }
  - ps: $env:Path += ";C:\OSGeo4W64\bin"
 

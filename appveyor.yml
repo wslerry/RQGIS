@@ -34,6 +34,10 @@ deploy_script: R -q -e "tic::deploy()"
 after_deploy: R -q -e "tic::after_deploy()"
 on_finish: R -q -e "tic::after_script()"
 
+environment:
+  global:
+    USE_RTOOLS: true
+
 # Adapt as necessary starting from here
 
 #on_failure:

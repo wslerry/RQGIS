@@ -16,7 +16,6 @@ cache:
 - C:\RLibrary
 - C:\OSGeo4W64\apps\qgis\bin
 
-
 before_test:
  - ps: >-
       if (-Not (Test-Path "C:\OSGeo4W64\apps\qgis\bin")) {

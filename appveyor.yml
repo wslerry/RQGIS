@@ -14,17 +14,15 @@ install:
 
 cache:
 - C:\RLibrary
-- C:\OSGeo4W64\
+- 'C:\Program Files\QGIS 2.18'
 
 before_test:
  - ps: >-
-      if (-Not (Test-Path "C:\OSGeo4W64\bin")) {
+      if (-Not (Test-Path "C:\Program Files\QGIS 2.18")) {
         cinst qgis-ltr
       }
- - ps: $env:Path += ";C:\OSGeo4W64\bin"
- - ps: Get-ChildItem -Path 'C:\Program Files'
- - ps: Get-ChildItem -Path 'C:\Program Files (x86)'
- - ps: Get-ChildItem -Path C:\Users\appveyor
+ - ps: $env:Path += ";C:\Program Files\QGIS 2.18"
+ - ps: Get-ChildItem -Path 'C:\Program Files\QGIS 2.18'
 
 before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"

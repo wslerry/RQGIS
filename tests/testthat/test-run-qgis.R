@@ -7,8 +7,6 @@ context("run_qgis")
 # Check QGIS-----------------------------------------------
 
 test_that("Test, if QGIS-algorithms are working?", {
-  testthat::skip_on_appveyor()
-  # testthat::skip_on_travis()
   testthat::skip_on_cran()
 
   coords_1 <- matrix(
@@ -69,9 +67,7 @@ test_that("Test, if QGIS-algorithms are working?", {
 # Check SAGA ----------------------------------------------
 
 test_that("Test, if SAGA-algorithms are working?", {
-  testthat::skip_on_appveyor()
   testthat::skip_on_cran()
-  # testthat::skip_on_travis()
 
   # attach data
   data("dem")
@@ -99,8 +95,6 @@ test_that("Test, if SAGA-algorithms are working?", {
 # Check GRASS 7------------------------------------------------------
 
 test_that("Test, if GRASS7-algorithms are working?", {
-  testthat::skip_on_appveyor()
-  # testthat::skip_on_travis()
   testthat::skip_on_cran()
 
   # attach data

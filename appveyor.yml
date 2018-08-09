@@ -16,7 +16,6 @@ cache:
 - C:\RLibrary
 - C:\OSGeo4W64\apps\qgis\bin
 
-
 before_test:
  - ps: >-
       if (-Not (Test-Path "C:\OSGeo4W64\apps\qgis\bin")) {
@@ -27,7 +26,6 @@ before_test:
 before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"
 after_build: R -q -e "tic::after_install()"
-before_test: R -q -e "tic::before_script()"
 test_script: R -q -e "tic::script()"
 on_success: R -q -e "try(tic::after_success(), silent = TRUE)"
 on_failure: R -q -e "tic::after_failure()"
@@ -41,10 +39,6 @@ on_finish: R -q -e "tic::after_script()"
 #on_failure:
 #  - 7z a failure.zip *.Rcheck\*
 #  - appveyor PushArtifact failure.zip
-
-environment:
-  GITHUB_PAT:
-    secure: VXO22OHLkl4YhVIomSMwCZyOTx03Xf2WICaVng9xH7gISlAg8a+qrt1DtFtk8sK5
 
 artifacts:
   - path: '*.Rcheck\**\*.log'

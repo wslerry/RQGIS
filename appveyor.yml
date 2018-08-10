@@ -28,7 +28,7 @@ before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"
 after_build: R -q -e "tic::after_install()"
 test_script: 
-  - R -q -e 'devtools::load_all(); set_env(); qgis_session_info()'
+  - R -q -e "devtools::document(); set_env(); qgis_session_info()"
   - R -q -e "tic::script()"
 on_success: R -q -e "try(tic::after_success(), silent = TRUE)"
 on_failure: R -q -e "tic::after_failure()"

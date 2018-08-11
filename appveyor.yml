@@ -22,7 +22,7 @@ before_test:
         cinst qgis-ltr
       }
  - ps: $env:Path += ";C:\Program Files\QGIS 2.18"
- - ps: Get-ChildItem -Path 'C:\Program Files\QGIS 2.18'
+ #- ps: Get-ChildItem -Path 'C:\Program Files\QGIS 2.18'
 
 before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"

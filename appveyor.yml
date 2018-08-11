@@ -16,9 +16,6 @@ cache:
 - C:\RLibrary
 - 'C:\Program Files\QGIS 2.18'
 
-platform: x64
-image: Visual Studio 2017
-
 before_test:
  - ps: >-
       if (-Not (Test-Path "C:\Program Files\QGIS 2.18")) {
@@ -43,6 +40,7 @@ on_finish: R -q -e "tic::after_script()"
 environment:
   global:
     USE_RTOOLS: true
+  R_ARCH: x64
 
 # Adapt as necessary starting from here
 

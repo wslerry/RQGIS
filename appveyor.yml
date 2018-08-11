@@ -16,6 +16,9 @@ cache:
 - C:\RLibrary
 - 'C:\Program Files\QGIS 2.18'
 
+platform:
+  - x64
+
 before_test:
  - ps: >-
       if (-Not (Test-Path "C:\Program Files\QGIS 2.18")) {

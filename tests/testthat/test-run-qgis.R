@@ -73,7 +73,7 @@ test_that("Test, if SAGA-algorithms are working?", {
   data("dem")
   params <- get_args_man(alg = "saga:sagawetnessindex", options = TRUE)
   params$DEM <- dem
-  params$TWI <- file.path(tempdir(), "twi.tif")
+  params$TWI <- file.path(tempdir(), "twi.sdat")
   saga_out_1 <- run_qgis(
     "saga:sagawetnessindex", params = params,
     show_output_paths = FALSE, load_output = TRUE
@@ -84,7 +84,7 @@ test_that("Test, if SAGA-algorithms are working?", {
   saga_out_2 <- run_qgis(
     "saga:sagawetnessindex",
     DEM = dem,
-    TWI = file.path(tempdir(), "twi.tif"),
+    TWI = file.path(tempdir(), "twi.sdat"),
     show_output_paths = FALSE, load_output = TRUE
   )
   # check if the output is a raster
@@ -109,7 +109,7 @@ test_that("Test, if GRASS7-algorithms are working?", {
   )
   # check if the output is a raster
   expect_is(grass_out_1[[1]], "RasterLayer")
-  expect_is(grass_out_1[[2]], "test")
+  expect_is(grass_out_1[[2]], "RasterLayer")
 
   # now use ...-notation
   grass_out_2 <- run_qgis(

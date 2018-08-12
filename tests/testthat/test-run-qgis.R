@@ -109,7 +109,7 @@ test_that("Test, if GRASS7-algorithms are working?", {
   )
   # check if the output is a raster
   expect_is(grass_out_1[[1]], "RasterLayer")
-  expect_is(grass_out_1[[2]], "RasterLayer")
+  expect_is(grass_out_1[[2]], "test")
 
   # now use ...-notation
   grass_out_2 <- run_qgis(

@@ -28,7 +28,7 @@ before_build: R -q -e "tic::before_install()"
 build_script: R -q -e "tic::install()"
 after_build: R -q -e "tic::after_install()"
 test_script: 
-  - R -q -e "install.packages('roxygen2'); install.packages('devtools'); devtools::document(); set_env('C:\\Program Files\\QGIS 2.18'); qgis_session_info(); devtools::test()"
+  #- R -q -e "install.packages('roxygen2'); install.packages('devtools'); devtools::document(); set_env('C:\\Program Files\\QGIS 2.18'); qgis_session_info(); devtools::test()"
   - R -q -e "tic::script()"
 on_success: R -q -e "try(tic::after_success(), silent = TRUE)"
 on_failure: R -q -e "tic::after_failure()"

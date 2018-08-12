@@ -42,6 +42,7 @@ environment:
   global:
     USE_RTOOLS: true
   R_ARCH: x64
+  NOT_CRAN: true # https://github.com/krlmlr/r-appveyor/issues/108
 
 # Adapt as necessary starting from here
 

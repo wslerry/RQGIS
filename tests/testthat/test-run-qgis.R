@@ -67,6 +67,7 @@ test_that("Test, if QGIS-algorithms are working?", {
 # Check SAGA ----------------------------------------------
 
 test_that("Test, if SAGA-algorithms are working?", {
+  testthat::skip_on_appveyor()
   testthat::skip_on_cran()
 
   # attach data
